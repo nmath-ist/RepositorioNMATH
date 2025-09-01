@@ -1,0 +1,9 @@
+main {
+    display:flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 40px;
+    background-color:#f7faff;
+    border-top: 1px solid #dbeafe
+}
