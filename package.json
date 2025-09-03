@@ -47,6 +47,7 @@
   "author": "João Cordeiro",
   "license": "ISC",
   "devDependencies": {
+    "dotenv": "^17.2.2",
     "gh-pages": "^6.3.0"
   }
 }

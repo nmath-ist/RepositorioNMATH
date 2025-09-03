@@ -10,8 +10,8 @@ app.use(cors());
 let isReady = false;
 
 const storage = await new Storage({
-    email:'novorepositorionmath@gmail.com',
-    password: 'nMathrepositorio22!',
+    email: process.env.MEGA_EMAIL || '',
+    password: process.env.MEGA_PASSWORD || '',
 })
 
 function findNodeByPath(path) {
