@@ -10,8 +10,8 @@ app.use(cors());
 let isReady = false;
 
 const storage = await new Storage({
-    email: process.env.MEGA_EMAIL || '',
-    password: process.env.MEGA_PASSWORD || '',
+    email: "novorepositorionmath@gmail.com",
+    password: "nMathrepositorio22!"
 })
 
 function findNodeByPath(path) {
@@ -38,7 +38,6 @@ app.get("/list", async (req, res) => {
   const folderPath = req.query.path || "";
   const folder = findNodeByPath(folderPath) || storage.root;
   console.log("Requested path:", folderPath);
-  try {
       
       if (!folder) return res.status(404).send("Folder not found");
       if (!folder.directory) return res.status(400).send("Path is not a folder");
@@ -52,8 +51,9 @@ app.get("/list", async (req, res) => {
       res.json(items);
       }
   
-      
-      app.get("/download", (req, res) => {
+});
+
+ app.get("/download", (req, res) => {
       const filePath = req.query.path;
       if (!filePath) return res.status(400).send("Missing path parameter");
 
@@ -66,12 +66,6 @@ app.get("/list", async (req, res) => {
       console.log(`Streaming ${filePath}...`);
       file.download().pipe(res);
       });
-      
-    } catch (err) {
-    console.error("Error in /list:", err);
-    res.status(500).json({ error: err.message });
-  }
-});
 
     //Quando o Cliente procura um determinado ficheiro ou Pasta
     app.get("/search", async (req, res) => {
