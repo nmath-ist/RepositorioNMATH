@@ -5,25 +5,24 @@ import Navbar from './Navbar.jsx';
 import {useNavigate, useLocation} from 'react-router-dom';
 import axios from "axios";
 import { useEffect } from 'react';
+import WelcomeBox from './WelcomeBox.jsx';
 
-
-
-export default function FolderComponent() {
+export default function FolderComponent(props) {
     const [items, setItems] = useState([]);
-    const [query, setQuery] = useState("");
     let path2 = ''
     let path = ''
 
 
     //Define o path atual
     let location = useLocation();
+    let correctLocationPath = location.pathname.startsWith("/auth")? '' : location.pathname;
     if (location.pathname.startsWith("/folder") || location.pathname === '/') {
         path2 = decodeURIComponent(location.pathname.replace(/^\/folder/, "").slice(1));
         path = "Repositório LMAC e MMAC" + (path2 ? "/" + path2 : "");
     }
     const navigate = useNavigate();
 
-    //Define o clickFunction associada ao Navbarr
+    //Define o clickFunction associada ao Navbar
     const handleClick = function(name) {
         navigate(`/folder/${name}`);
     };
@@ -41,11 +40,10 @@ export default function FolderComponent() {
 
     //Devolve os items da pasta atual
     useEffect(() => {
-
         if (location.pathname.startsWith("/folder") || location.pathname === '/'){
             if (path === "Repositório LMAC e MMAC") {return setItems([])}
             else{
-                axios.get("http://localhost:5000/list", {
+                axios.get("https://repositorionmath.uw.r.appspot.com/list", {
             params: { path: (path) }
             }).then(res => setItems(res.data));
             }}
@@ -56,11 +54,13 @@ export default function FolderComponent() {
             else{
             axios.get("http://localhost:5000/search", {params: {q: (value) } }).then(res => setItems(res.data));}
         }
-        },[location.pathname]);
+        },[correctLocationPath]);
 
 
-//-------------------------
 
+
+//---------------- Código Referente à Funcionalidade de Pesquisa ---------
+    const [query, setQuery] = useState("");
 
     //Função que é executada sempre que o utilizador efetua uma pesquisa
     const submitFunction = function(event){
@@ -72,6 +72,13 @@ export default function FolderComponent() {
         event.target.reset();
     }
 
+    useEffect(() => {
+        if (query !== "") {
+        navigate(`/search/${query}`)};
+    },[query]);
+
+
+//---------------------------------------------------------------------
 
     //Define a clickFunction associada ao Main para ficheiros
     const handleClick3 = function(name, pathInput) {
@@ -93,13 +100,24 @@ export default function FolderComponent() {
     };
 
 
-    // O que devolve dependendo da rota
- 
-    return(
-    <>
-        <Header clickFunction = {headerClickFunction} actionFunction = {submitFunction} />
-        <Navbar clickFunction = {handleClick} /> 
-        <Main filhos = {items} clickFunction = {handleClick2} clickFunction2 = {handleClick3} />
-    </>)
 
+  if ( location.pathname === '/'){
+
+    return (
+        <>
+            <Header clickFunction={headerClickFunction} actionFunction={submitFunction} />
+            <Navbar clickFunction={handleClick} />
+            <WelcomeBox name = {props.name}/>
+        </>
+    )
+  }
+  
+  else{
+    return (
+        <>
+            <Header clickFunction={headerClickFunction} actionFunction={submitFunction} />
+            <Navbar clickFunction={handleClick} />
+            <Main filhos={items} clickFunction={handleClick2} clickFunction2={handleClick3} />
+        </>
+    )};
 }
