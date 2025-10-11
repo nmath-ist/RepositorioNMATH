@@ -2,19 +2,22 @@
   "name": "server",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nmath-ist.github.io/RepositorioNMATH",
+  "proxy": "https://backend-992345001586.europe-west1.run.app/",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "ajv": "^6.12.6",
+    "ajv-keywords": "^3.5.2",
     "axios": "^1.11.0",
     "multer": "^2.0.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.8.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -23,13 +26,17 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "preinstall": "npx npm-force-resolutions"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "resolutions": {
+    "ajv": "6.12.6",
+    "ajv-keywords": "3.5.2"
   },
   "browserslist": {
     "production": [
@@ -49,6 +56,8 @@
   "license": "ISC",
   "devDependencies": {
     "dotenv": "^17.2.2",
-    "gh-pages": "^6.3.0"
+    "gh": "^2.8.9",
+    "gh-pages": "^6.3.0",
+    "npm-force-resolutions": "^0.0.10"
   }
 }

@@ -9,7 +9,7 @@ import Callback from './Components/Callback.jsx';
 
 export default function App() {
 
-    const clientID = "3103289965019157";
+/*     const clientID = "3103289965019157";
     const redirectURL = "http://localhost:3000/auth/callback";
     const authUrl = `https://fenix.tecnico.ulisboa.pt/oauth/userdialog?client_id=${clientID}&redirect_uri=${encodeURIComponent(redirectURL)}&response_type=code`;
 
@@ -24,7 +24,7 @@ export default function App() {
 
     useEffect(() => {
     if (!token) return;
-    fetch("https://repositorionmath.uw.r.appspot.com/api/fenix/person", {
+    fetch("/api/fenix/person", {
         headers: {
         Authorization: `Bearer ${token}`
         }
@@ -33,13 +33,13 @@ export default function App() {
         .then(data => {dados = data; console.log(dados);})
         .catch(err => console.error(err));
     }, [token]);
-
+ */
 
 
     return(
     <>
         <Routes>
-            <Route path = '/' element = {<FolderComponent name = {dados.name} />}/>
+            <Route path = '/' element = {<FolderComponent name = {''} />}/>
             <Route path = '/folder/*' element = {<FolderComponent/>}/>
             <Route path = '/search/*' element = {<FolderComponent/>}/>
             <Route path = '/auth/callback/*' element = {<Callback/>}/>

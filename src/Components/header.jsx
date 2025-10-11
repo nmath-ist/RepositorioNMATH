@@ -20,25 +20,33 @@ let location = useLocation();
 const [file, setFile] = useState(null);
 
 
- const handleUpload = async (e) => {
-    e.preventDefault();
-    if (location.pathname === '/') {
-        alert("Não estás na pasta correta")
-    }else{
-    if (!file) return;
+const handleUpload = async (e) => {
+  e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("path", path); // send target folder
+  if (!file) return;
 
-    try {
-      await axios.post("http://localhost:5000/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    } catch (err) {
-      console.error("Upload failed:", err);
-    }}
-  };
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("path", path);
+
+  console.log("Uploading:", file.name, "to:", path);
+
+  try {
+    const res = await axios.post(
+      "https://backend-992345001586.europe-west1.run.app/upload",
+      formData
+    );
+    console.log("✅ Upload success:", res.data);
+  } catch (err) {
+    if (err.response) {
+      console.error("Upload failed:", err.response.status, err.response.data);
+    } else {
+      console.error("Upload failed:", err.message);
+    }
+  }
+
+  e.target.reset();
+};
 
 
 
@@ -46,7 +54,7 @@ const [file, setFile] = useState(null);
   <header className ='header' >
     <h1 className = 'titulo' onClick={props.clickFunction}> Repositório de Matemática </h1>
     <form onSubmit = {props.actionFunction}>
-        <input className = 'pesquisar' type="text" placeholder="&#128270; Pesquisar Conteúdo..." name = "query" />
+        <input className = 'pesquisar' type="text" placeholder="&#x1F50E;&#xFE0E;  Pesquisar Conteúdo..." name = "query" />
         <button type="submit" style = {{display: 'none'}}> </button>
     </form>
     <form onSubmit={handleUpload} className = 'uploadForm'>
