@@ -24,7 +24,7 @@ export default function App() {
 
     useEffect(() => {
     if (!token) return;
-    fetch("/api/fenix/person", {
+    fetch("https://backend-992345001586.europe-west1.run.app/api/fenix/person", {
         headers: {
         Authorization: `Bearer ${token}`
         }
