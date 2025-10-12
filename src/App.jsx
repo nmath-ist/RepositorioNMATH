@@ -42,7 +42,7 @@ export default function App() {
             <Route path = '/' element = {<FolderComponent name = {''} />}/>
             <Route path = '/folder/*' element = {<FolderComponent/>}/>
             <Route path = '/search/*' element = {<FolderComponent/>}/>
-            <Route path = '/auth/callback/*' element = {<Callback/>}/>
+            <Route path = '/#/auth/callback/*' element = {<Callback/>}/>
         </Routes>
     </>
     );
