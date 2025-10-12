@@ -59,14 +59,14 @@ export default function FolderComponent(props) {
             if (path === "Repositório LMAC e MMAC") {
                 setItems([]);
             } else {
-                axios.get("/list", { params: { path } })
+                axios.get("https://backend-992345001586.europe-west1.run.app/list", { params: { path } })
                     .then(res => setItems(res.data))
                     .catch(() => setItems([]));
             }
         } else if (location.pathname.startsWith("/search")) {
             let value = decodeURIComponent(location.pathname.replace(/^\/search/, "").slice(1));
             if (value === '') return;
-            axios.get("/search", { params: { q: value } })
+            axios.get("https://backend-992345001586.europe-west1.run.app/search", { params: { q: value } })
                 .then(res => setItems(res.data))
                 .catch(() => setItems([]));
         }

@@ -1,4 +1,4 @@
-import { useLocation, Link } from 'react-router-dom';
+import React from 'react';
 import Caixa from './Caixa.jsx';
 import Caixa_File from './Caixa_File.jsx';
 import './Main.css';

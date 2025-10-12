@@ -1,9 +1,8 @@
 {
-  "homepage": "https://nmath-ist.github.io/RepositorioNMATH",
+  "homepage": "https://nmath-ist.github.io/RepositorioNMATH/",
   "name": "server",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://backend-992345001586.europe-west1.run.app/",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
