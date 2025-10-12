@@ -9,8 +9,8 @@ import Callback from './Components/Callback.jsx';
 
 export default function App() {
 
-/*     const clientID = "3103289965019157";
-    const redirectURL = "http://localhost:3000/auth/callback";
+    const clientID = "1132965128045001";
+    const redirectURL = "https://nmath-ist.github.io/RepositorioNMATH/auth/callback";
     const authUrl = `https://fenix.tecnico.ulisboa.pt/oauth/userdialog?client_id=${clientID}&redirect_uri=${encodeURIComponent(redirectURL)}&response_type=code`;
 
     if (!sessionStorage.getItem("didRedirect")) {
@@ -33,7 +33,7 @@ export default function App() {
         .then(data => {dados = data; console.log(dados);})
         .catch(err => console.error(err));
     }, [token]);
- */
+ 
 
 
     return(
