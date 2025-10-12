@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/RepositorioNMATH/static/css/main.6cd576bb.css",
-    "main.js": "/RepositorioNMATH/static/js/main.26673c1f.js",
+    "main.js": "/RepositorioNMATH/static/js/main.f61b7f03.js",
     "static/js/453.03401c35.chunk.js": "/RepositorioNMATH/static/js/453.03401c35.chunk.js",
     "index.html": "/RepositorioNMATH/index.html",
     "main.6cd576bb.css.map": "/RepositorioNMATH/static/css/main.6cd576bb.css.map",
-    "main.26673c1f.js.map": "/RepositorioNMATH/static/js/main.26673c1f.js.map",
+    "main.f61b7f03.js.map": "/RepositorioNMATH/static/js/main.f61b7f03.js.map",
     "453.03401c35.chunk.js.map": "/RepositorioNMATH/static/js/453.03401c35.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6cd576bb.css",
-    "static/js/main.26673c1f.js"
+    "static/js/main.f61b7f03.js"
   ]
 }
