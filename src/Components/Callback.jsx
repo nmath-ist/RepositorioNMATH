@@ -8,7 +8,7 @@ export default function Callback() {
   useEffect(() => {
     if (code) {
       // Send the code to your backend to exchange for a token
-      fetch("http://localhost:5000/api/auth/fenix", {
+      fetch("https://backend-992345001586.europe-west1.run.app/api/auth/fenix", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code })
