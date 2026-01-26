@@ -8,15 +8,19 @@ import Callback from './Components/Callback.jsx';
 
 
 export default function App() {
-
     const clientID = "1132965128045001";
-    const redirectURL = "https://nmath-ist.github.io/RepositorioNMATH/#/auth/callback";
+    const redirectURL = "https://repositorio.nmath.pt/auth/callback";
     const authUrl = `https://fenix.tecnico.ulisboa.pt/oauth/userdialog?client_id=${clientID}&redirect_uri=${encodeURIComponent(redirectURL)}&response_type=code`;
 
-    if (!sessionStorage.getItem("didRedirect")) {
+useEffect(() => {
+  console.log("Current path:", window.location.pathname);
+  const token = localStorage.getItem("fenix_token");
+  if (!token && !sessionStorage.getItem("didRedirect") && !window.location.pathname.includes("/auth/callback")) {
+    console.log("Initiating Fenix authentication...");
     sessionStorage.setItem("didRedirect", "true");
     window.location.href = authUrl;
-    }
+  }
+}, [authUrl]);
 
     const token = localStorage.getItem("fenix_token");
     let dados = {};
@@ -32,17 +36,17 @@ export default function App() {
         .then(res => res.json())
         .then(data => {dados = data; console.log(dados);})
         .catch(err => console.error(err));
-    }, [token]);
+    }, [token]); 
  
 
 
     return(
     <>
         <Routes>
+            <Route path = '/auth/callback' element = {<Callback/>}/>
             <Route path = '/' element = {<FolderComponent name = {''} />}/>
             <Route path = '/folder/*' element = {<FolderComponent/>}/>
             <Route path = '/search/*' element = {<FolderComponent/>}/>
-            <Route path = '/#/auth/callback/*' element = {<Callback/>}/>
         </Routes>
     </>
     );
