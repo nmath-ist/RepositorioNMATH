@@ -83,8 +83,8 @@ PORT=8080
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/nmath-ist/RepositorioNMATH.git
+cd RepositorioNMATH
 ```
 
 2. **Install server dependencies**
