@@ -6,18 +6,14 @@ import axios from 'axios';
 
 export default function Header(props) {
 
-let path = '';
-let path2 = '';
-
-let location = useLocation();
-  if (location.pathname.startsWith("/folder") || location.pathname === '/') {
-        path2 = decodeURIComponent(location.pathname.replace(/^\/folder/, "").slice(1));
-        path = "Repositório LMAC e MMAC" + (path2 ? "/" + path2 : "");
-  }
-
-//---------------- Código Referente à Funcionalidade de Upload -----------
-
 const [file, setFile] = useState(null);
+const location = useLocation();
+
+let path = '';
+if (location.pathname.startsWith("/folder") || location.pathname === '/') {
+    const path2 = decodeURIComponent(location.pathname.replace(/^\/folder/, "").slice(1));
+    path = "Repositório LMAC e MMAC" + (path2 ? "/" + path2 : "");
+}
 
 
 const handleUpload = async (e) => {

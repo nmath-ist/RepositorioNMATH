@@ -93,3 +93,129 @@
     background-color: #f7fbff;
     border-radius: 15px;
 }
+
+/* Mobile responsive styles */
+@media screen and (max-width: 1024px) {
+    .header {
+        flex-wrap: wrap;
+        padding: 15px 10px;
+    }
+
+    .titulo {
+        font-size: 28px;
+        margin: 5px;
+    }
+
+    .image {
+        width: 80px;
+        margin: 5px;
+    }
+
+    .uploadForm {
+        width: 100%;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+
+    .uploadInput {
+        margin: 5px;
+        font-size: 12px;
+    }
+
+    .upload {
+        margin: 5px;
+        font-size: 13px;
+    }
+
+    .pesquisar {
+        width: 180px;
+        margin: 5px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        align-items: center;
+    }
+
+    .titulo {
+        font-size: 20px;
+        margin: 5px;
+        flex: 0 0 auto;
+    }
+
+    .pesquisar {
+        width: 150px;
+        height: 25px;
+        padding: 5px 8px;
+        margin: 5px;
+        font-size: 12px;
+        flex: 0 0 auto;
+    }
+
+    .image {
+        display: none;
+    }
+
+    .uploadForm {
+        flex-direction: row;
+        width: 100%;
+        margin-top: 5px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .uploadInput {
+        width: auto;
+        max-width: 60%;
+        margin: 3px;
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+
+    .uploadInput::file-selector-button {
+        font-size: 10px;
+        padding: 4px 6px;
+        margin-right: 5px;
+    }
+
+    .upload {
+        width: auto;
+        margin: 3px;
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .titulo {
+        font-size: 16px;
+        margin: 3px;
+    }
+
+    .pesquisar {
+        width: 120px;
+        height: 22px;
+        padding: 4px 6px;
+        font-size: 11px;
+    }
+
+    .uploadInput {
+        max-width: 55%;
+        font-size: 9px;
+        padding: 3px 5px;
+    }
+
+    .uploadInput::file-selector-button {
+        font-size: 9px;
+        padding: 3px 5px;
+    }
+
+    .upload {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+}

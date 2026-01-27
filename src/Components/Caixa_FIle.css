@@ -53,3 +53,41 @@
     color: #6A89A7;
     
 }
+
+/* Mobile responsive styles */
+@media screen and (max-width: 768px) {
+    .caixa_File {
+        width: 35%;
+        height: 120px;
+        margin: 8px;
+    }
+
+    .nome-cadeira_File {
+        font-size: 0.75rem;
+    }
+
+    .simbolo-livro_File {
+        width: 24px;
+        height: 24px;
+        margin: 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .caixa_File {
+        width: 40%;
+        height: 100px;
+        margin: 6px;
+    }
+
+    .nome-cadeira_File {
+        font-size: 0.7rem;
+        padding: 3%;
+    }
+
+    .simbolo-livro_File {
+        width: 22px;
+        height: 22px;
+        margin: 6px;
+    }
+}

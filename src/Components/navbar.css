@@ -35,3 +35,35 @@
     .segmented-control button:not(.active):hover {
       background: #e0ebff;
     }
+
+/* Mobile responsive styles */
+@media screen and (max-width: 768px) {
+    .segmented-control {
+        margin-left: 3%;
+        margin-right: 3%;
+        padding: 3px;
+    }
+
+    .segmented-control button {
+        padding: 10px 15px;
+        font-size: 13px;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .segmented-control {
+        margin-left: 2%;
+        margin-right: 2%;
+        padding: 2px;
+        flex-direction: column;
+    }
+
+    .segmented-control button {
+        width: 100%;
+        padding: 10px;
+        font-size: 12px;
+        margin: 2px 0;
+    }
+}

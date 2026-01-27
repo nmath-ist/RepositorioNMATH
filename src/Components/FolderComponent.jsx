@@ -8,14 +8,12 @@ import WelcomeBox from './WelcomeBox.jsx';
 
 export default function FolderComponent(props) {
     const [items, setItems] = useState([]);
-    const [query, setQuery] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
 
     // Compute path and path2 only when needed
     let path2 = '';
     let path = '';
-    let correctLocationPath = location.pathname.startsWith("/auth") ? '' : location.pathname;
     if (location.pathname.startsWith("/folder") || location.pathname === '/') {
         path2 = decodeURIComponent(location.pathname.replace(/^\/folder/, "").slice(1));
         path = "Repositório LMAC e MMAC" + (path2 ? "/" + path2 : "");
@@ -78,7 +76,6 @@ export default function FolderComponent(props) {
         const formEl = event.currentTarget;
         const formData = new FormData(formEl);
         const searchQuery = formData.get("query");
-        setQuery(searchQuery);
         navigate(`/search/${searchQuery}`);
         event.target.reset();
     };
@@ -89,7 +86,7 @@ export default function FolderComponent(props) {
             <>
                 <Header clickFunction={headerClickFunction} actionFunction={submitFunction} />
                 <Navbar clickFunction={handleClick} />
-                <WelcomeBox name={props.name} />
+                <WelcomeBox name={props.name} userData={props.userData} />
             </>
         );
     } else {

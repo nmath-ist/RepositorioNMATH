@@ -7,3 +7,18 @@ main {
     background-color:#f7faff;
     border-top: 1px solid #dbeafe
 }
+
+/* Mobile responsive styles */
+@media screen and (max-width: 768px) {
+    main {
+        margin-top: 20px;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    main {
+        margin-top: 15px;
+        padding: 10px;
+    }
+}
