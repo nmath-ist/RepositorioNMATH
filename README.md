@@ -138,7 +138,7 @@ The application includes Dockerfiles for containerized deployment. Both client a
 
 ## Author
 
-João Cordeiro
+NMATH - Núcleo de Estudantes de Matemática do Instituto Superior Técnico
 
 ## License
 
