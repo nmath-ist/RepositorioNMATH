@@ -1,8 +1,7 @@
 import "./WelcomeBox.css"
 
 export default function WelcomeBox(props) {
-  const username = props.userData?.name || '';
-
+  const username = props.userData?.givenNames || '';
   return (
     <div className="MainBox">
 <img className="solido-fundo solido-1" src="/solidos/tetraedro.png" alt="" aria-hidden="true" />
