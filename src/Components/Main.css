@@ -1,24 +1,29 @@
 main {
-    display:flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-top: 40px;
-    background-color:#f7faff;
-    border-top: 1px solid #dbeafe
+    display: flex;
+    flex-direction: column;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-5) var(--space-6);
+    background-color: var(--color-bg);
+    min-height: calc(100vh - 130px);
+}
+
+main:empty::after {
+    content: "Esta pasta está vazia.";
+    color: var(--color-ink-faint);
+    font-size: 14px;
+    padding: var(--space-4) 0;
 }
 
 /* Mobile responsive styles */
 @media screen and (max-width: 768px) {
     main {
-        margin-top: 20px;
-        justify-content: center;
+        padding: var(--space-3) var(--space-3) var(--space-5);
     }
 }
 
 @media screen and (max-width: 480px) {
     main {
-        margin-top: 15px;
-        padding: 10px;
+        padding: var(--space-2) var(--space-2) var(--space-4);
     }
 }

@@ -48,6 +48,8 @@ export default function Callback() {
           throw new Error('No access token received');
         }
         localStorage.setItem("fenix_token", data.access_token);
+        localStorage.setItem("fenix_refresh_token", data.refresh_token);
+        localStorage.setItem("fenix_token_expiry", (Date.now() + data.expires_in * 1000).toString());
         console.log("Token saved, redirecting...");
         window.location.replace("/");
       })

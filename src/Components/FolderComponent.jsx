@@ -5,6 +5,8 @@ import Navbar from './Navbar.jsx';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from "axios";
 import WelcomeBox from './WelcomeBox.jsx';
+import Footer from './Footer.jsx';
+
 
 export default function FolderComponent(props) {
     const [items, setItems] = useState([]);
@@ -33,20 +35,37 @@ export default function FolderComponent(props) {
         }
     };
 
-    // Main file click handler
-    const handleClick3 = (name, pathInput) => {
-        let url = "";
-        if (location.pathname.startsWith("/folder") || location.pathname === '/') {
-            const filePath = path ? `${path}/${name}` : name;
-            url = `https://backend-992345001586.europe-west1.run.app/download?path=${encodeURIComponent(filePath)}`;
-        } else if (location.pathname.startsWith("/search")) {
-            const pathSearch = "Repositório LMAC e MMAC" + '/' + pathInput;
-            url = `https://backend-992345001586.europe-west1.run.app/download?path=${encodeURIComponent(pathSearch)}`;
-        }
-        window.open(url, "_blank");
-    };
+// Main file click handler
+const handleClick3 = (name, pathInput) => {
+    let url = "";
+    const encodedName = encodeURIComponent(name);
 
-    // Title click handler
+    if (location.pathname.startsWith("/folder") || location.pathname === '/') {
+        const filePath = path ? `${path}/${name}` : name;
+        url = `https://backend-992345001586.europe-west1.run.app/download/${encodedName}?path=${encodeURIComponent(filePath)}`;
+    } else if (location.pathname.startsWith("/search")) {
+        const pathSearch = "Repositório LMAC e MMAC" + '/' + pathInput;
+        url = `https://backend-992345001586.europe-west1.run.app/download/${encodedName}?path=${encodeURIComponent(pathSearch)}`;
+    }
+
+    const pdfWindow = window.open("", "_blank");
+
+    if (pdfWindow) {
+        pdfWindow.document.write(`
+            <html>
+                <head><title>${name}</title></head>
+                <body style="margin:0;padding:0;overflow:hidden;">
+                    <iframe src="${url}" width="100%" height="100%" style="border:none;position:fixed;top:0;left:0;"></iframe>
+                </body>
+            </html>
+        `);
+        pdfWindow.document.close();
+    } else {
+        alert("O browser bloqueou a janela. Permite pop-ups para este site.");
+    }
+};
+
+// Title click handler
     const headerClickFunction = () => {
         navigate(`/`);
     };
@@ -87,6 +106,7 @@ export default function FolderComponent(props) {
                 <Header clickFunction={headerClickFunction} actionFunction={submitFunction} />
                 <Navbar clickFunction={handleClick} />
                 <WelcomeBox name={props.name} userData={props.userData} />
+                <Footer />
             </>
         );
     } else {
@@ -95,6 +115,7 @@ export default function FolderComponent(props) {
                 <Header clickFunction={headerClickFunction} actionFunction={submitFunction} />
                 <Navbar clickFunction={handleClick} />
                 <Main filhos={items} clickFunction={handleClick2} clickFunction2={handleClick3} />
+                <Footer />
             </>
         );
     }

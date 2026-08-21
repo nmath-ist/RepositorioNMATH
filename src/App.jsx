@@ -13,27 +13,33 @@ export default function App() {
     const [userData, setUserData] = useState(null);
 
 useEffect(() => {
-  console.log("Current path:", window.location.pathname);
-  const token = localStorage.getItem("fenix_token");
-  const lastAuthTime = sessionStorage.getItem("lastAuthTime");
-  const oneHourInMs = 60 * 60 * 1000;
-  
-  // Check if one hour has passed since last authentication
-  const shouldReAuth = lastAuthTime && (Date.now() - parseInt(lastAuthTime)) > oneHourInMs;
-  
-  if (shouldReAuth) {
-    // Clear old authentication data
-    sessionStorage.removeItem("didRedirect");
-    sessionStorage.removeItem("lastAuthTime");
+  const checkAndRedirectIfExpired = () => {
+    const token = localStorage.getItem("fenix_token");
+    const expiry = localStorage.getItem("fenix_token_expiry");
+    const isExpired = !expiry || Date.now() > parseInt(expiry);
+
+    if (window.location.pathname.includes("/auth/callback")) return;
+
+    if (token && !isExpired) {
+      return; // token ainda válido, nada a fazer
+    }
+
+    // Token ausente ou expirado: redireciona para o Fénix.
+    // Como a sessão CAS costuma continuar ativa, isto normalmente
+    // acontece sem pedir login outra vez ao utilizador.
     localStorage.removeItem("fenix_token");
-  }
-  
-  if (!token && !sessionStorage.getItem("didRedirect") && !window.location.pathname.includes("/auth/callback")) {
-    console.log("Initiating Fenix authentication...");
-    sessionStorage.setItem("didRedirect", "true");
-    sessionStorage.setItem("lastAuthTime", Date.now().toString());
+    localStorage.removeItem("fenix_refresh_token");
+    localStorage.removeItem("fenix_token_expiry");
     window.location.href = authUrl;
-  }
+  };
+
+  // Verifica logo ao carregar a página
+  checkAndRedirectIfExpired();
+
+  // E depois verifica periodicamente (a cada 5 minutos),
+  // para apanhar expirações mesmo sem o utilizador navegar/recarregar
+  const interval = setInterval(checkAndRedirectIfExpired, 5 * 60 * 1000);
+  return () => clearInterval(interval);
 }, [authUrl]);
 
 useEffect(() => {
